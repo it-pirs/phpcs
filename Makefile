@@ -75,7 +75,7 @@ master-branch-image:
 		DOCKERFILE_PATH="$(DOCKERFILE_PATH)" \
 		CACHE_TAG="" \
 		IMAGE_NAME="$(DOCKER_REPO):latest" \
-		sh ./hooks/build
+		./hooks/build
 
 # Clean the image from the master branch
 clean-master-branch-image:
@@ -96,7 +96,7 @@ tag-%-image:
 		DOCKERFILE_PATH="$(DOCKERFILE_PATH)" \
 		CACHE_TAG="" \
 		IMAGE_NAME="$(DOCKER_REPO):$($@_TAG)" \
-		sh ./hooks/build
+		./hooks/build
 
 # Clean the image from the tag "%"
 clean-tag-%-image:

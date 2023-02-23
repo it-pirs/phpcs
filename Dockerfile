@@ -1,9 +1,9 @@
 # Set defaults
 
-ARG BASE_IMAGE="php:7.2-alpine"
+ARG BASE_IMAGE="php:8.2-cli-alpine"
 ARG PACKAGIST_NAME="squizlabs/php_codesniffer"
 ARG PHPQA_NAME="phpcs"
-ARG VERSION="3.5.8"
+ARG VERSION="3.7.2"
 
 # Build image
 
@@ -23,7 +23,7 @@ RUN apk add --no-cache tini
 
 # Install PHP_CodeSniffer - https://github.com/squizlabs/PHP_CodeSniffer
 
-COPY --from=composer:1.6.5 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:lts /usr/bin/composer /usr/bin/composer
 RUN COMPOSER_HOME="/composer" composer global require --prefer-dist --no-progress --dev ${PACKAGIST_NAME}:${VERSION}
 ENV PATH /composer/vendor/bin:${PATH}
 
